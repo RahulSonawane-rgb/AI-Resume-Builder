@@ -3,183 +3,176 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laugh Tale - The Treasure Found</title>
+    <title>DevVault | Software Portfolio</title>
     <style>
-        /* --- CORE THEME --- */
-        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Pirata+One&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap');
 
         :root {
-            --gold: #FFD700;
-            --dark-gold: #B8860B;
-            --ocean-blue: #0a192f;
-            --parchment: #f4e4bc;
-            --danger-red: #D32F2F;
+            --accent: #E2B75C;
+            --bg-body: #0B0D0E;
+            --bg-card: #14171A;
+            --text-primary: #FFFFFF;
+            --text-secondary: #8E9296;
+            --border: rgba(255, 255, 255, 0.08);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         body {
             margin: 0;
-            padding: 0;
-            background-color: var(--ocean-blue);
-            font-family: 'Cinzel', serif;
-            color: var(--parchment);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            text-align: center;
-            overflow-x: hidden;
-            background-image: 
-                radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.6), #000000),
-                url("https://www.transparenttextures.com/patterns/aged-paper.png"); /* Texture overlay */
+            background-color: var(--bg-body);
+            color: var(--text-primary);
+            font-family: 'Plus Jakarta Sans', sans-serif;
         }
 
-        /* --- CONTAINER --- */
-        .treasure-container {
-            max-width: 600px;
-            padding: 40px;
-            border: 4px solid var(--gold);
-            border-radius: 20px;
-            background: rgba(0, 0, 0, 0.85);
-            box-shadow: 0 0 30px var(--dark-gold), inset 0 0 50px rgba(0,0,0,0.9);
-            position: relative;
-            animation: float 6s ease-in-out infinite;
-        }
+        .container { max-width: 1100px; margin: 0 auto; padding: 60px 24px; }
 
-        /* --- DECORATIONS --- */
-        .skull-icon {
-            font-size: 80px;
-            margin-bottom: 10px;
-            color: var(--parchment);
-            text-shadow: 0 0 10px var(--danger-red);
-        }
+        /* HEADER */
+        header { margin-bottom: 60px; border-bottom: 1px solid var(--border); padding-bottom: 30px; }
+        header h1 { font-size: 2.2rem; margin: 0; }
+        header p { color: var(--text-secondary); margin-top: 8px; }
 
-        h1 {
-            font-family: 'Pirata One', cursive; /* Pirate Font */
-            font-size: 3.5rem;
-            margin: 10px 0;
-            color: var(--gold);
-            text-shadow: 2px 2px 0px #000, 0 0 20px var(--gold);
-            letter-spacing: 2px;
-        }
+        /* GRID */
+        #store-front { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; }
 
-        h2 {
-            font-size: 1.2rem;
-            color: var(--parchment);
-            margin-bottom: 30px;
-            border-bottom: 1px solid var(--dark-gold);
-            display: inline-block;
-            padding-bottom: 10px;
+        .app-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 30px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: var(--transition);
         }
+        .app-item:hover { border-color: var(--accent); transform: translateY(-4px); }
+        .app-category { font-size: 0.7rem; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; }
+        .app-item h3 { margin: 0 0 10px 0; font-size: 1.4rem; }
+        .app-item p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.5; margin-bottom: 20px; }
 
-        p {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            margin-bottom: 30px;
-            color: #ddd;
-        }
-
-        /* --- THE APP REVEAL --- */
-        .app-card {
-            background: linear-gradient(145deg, #1a1a1a, #0d0d0d);
-            border: 2px solid var(--dark-gold);
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 30px;
-        }
-
-        .app-title {
-            color: var(--gold);
-            font-size: 1.5rem;
-            margin-bottom: 5px;
-        }
-
-        .app-desc {
-            font-size: 0.9rem;
-            font-style: italic;
-            color: #aaa;
-        }
-
-        /* --- DOWNLOAD BUTTON --- */
-        .bounty-btn {
-            display: inline-block;
-            background: var(--gold);
-            color: #000;
-            font-family: 'Pirata One', cursive;
-            font-size: 1.8rem;
-            padding: 15px 40px;
-            text-decoration: none;
-            border-radius: 5px;
-            border: 2px solid #fff;
-            box-shadow: 0 0 15px var(--gold);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            animation: pulse 2s infinite;
-        }
-
-        .bounty-btn:hover {
-            background: #fff;
-            color: var(--dark-gold);
-            transform: scale(1.05);
-            box-shadow: 0 0 30px var(--gold);
-        }
-
-        /* --- FOOTER --- */
-        .footer-note {
-            margin-top: 30px;
-            font-size: 0.8rem;
-            opacity: 0.6;
-        }
-
-        /* --- ANIMATIONS --- */
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
-        }
-
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.7); }
-            70% { box-shadow: 0 0 0 15px rgba(255, 215, 0, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(255, 215, 0, 0); }
-        }
+        /* DETAIL VIEW */
+        #app-detail-view { display: none; animation: fadeIn 0.4s ease; }
+        .back-nav { background: none; border: none; color: var(--text-secondary); cursor: pointer; margin-bottom: 40px; font-weight: 600; }
+        .back-nav:hover { color: var(--accent); }
         
-        /* Mobile adjustment */
-        @media (max-width: 600px) {
-            h1 { font-size: 2.5rem; }
-            .treasure-container { width: 90%; margin: 20px; }
+        .detail-hero { display: grid; grid-template-columns: 1fr 320px; gap: 50px; }
+        .version-badge { background: rgba(226, 183, 92, 0.1); color: var(--accent); padding: 4px 12px; border-radius: 100px; font-size: 0.75rem; }
+        .download-sidebar { background: var(--bg-card); border: 1px solid var(--border); padding: 25px; border-radius: 16px; }
+        
+        .install-btn {
+            display: block; background: var(--accent); color: #000; text-align: center;
+            padding: 14px; border-radius: 8px; text-decoration: none; font-weight: 700; margin-top: 20px;
         }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @media (max-width: 850px) { .detail-hero { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
 
-    <div class="treasure-container">
-        <div class="skull-icon">☠️</div>
-
-        <h1>LAUGH TALE</h1>
-        <h2>You Solved The Mystery</h2>
-
-        <p>
-            Wealth, Fame, Power... You have ventured deep into the code and found what lies at the end of the Grand Line.
-            <br><br>
-            This isn't just gold. It is a tool to forge your own future.
-        </p>
-
-        <div class="app-card">
-            <div class="app-title">AI Resume Builder</div>
-            <div class="app-desc">"The Power to Write Your Destiny"</div>
-            <div style="margin-top: 10px; font-size: 0.8em; color: var(--parchment);">
-                Contains: AI Logic • Auto-Formatting • PDF Export
-            </div>
+    <div class="container">
+        <div id="main-view">
+            <header>
+                <h1>DevVault Ecosystem</h1>
+                <p>Professional applications by Rahul Sonawane</p>
+            </header>
+            <div id="store-front">
+                </div>
         </div>
 
-        <a href="https://github.com/RahulSonawane-rgb/AI-Resume-Builder/releases/download/v1.0.0/ResumeBuilder.apk" class="bounty-btn" download>
-            Claim The Treasure
-        </a>
-
-        <div class="footer-note">
-            *Warning: Treasure is in APK format. Your device may ask for permission to install unknown artifacts.*
+        <div id="app-detail-view">
+            <button class="back-nav" onclick="closeApp()">← Back to Overview</button>
+            <div class="detail-hero" id="detail-content">
+                </div>
         </div>
     </div>
 
+    <script>
+        // --- 1. YOUR APPLICATION DATA (JSON) ---
+        // Just add a new object to this list to add a new app!
+        const apps = [
+            {
+                id: "resume-builder",
+                title: "AI Resume Builder",
+                category: "Productivity / AI",
+                tagline: "The Power to Write Your Destiny",
+                version: "1.0.1 Stable",
+                shortDesc: "A smart engine designed to automate professional CV creation with precision formatting.",
+                fullDesc: "The AI Resume Builder utilizes advanced logic to structure, format, and export professional resumes. It eliminates the struggle of manual layout, allowing you to focus on content impact.",
+                features: ["AI Content Suggestions", "Auto-Formatting Engine", "PDF Export Support", "Offline Data Security"],
+                platform: "Android (APK)",
+                downloadUrl: "https://github.com/RahulSonawane-rgb/AI-Resume-Builder/releases/download/v1.0.1/ResumeBuilder.apk"
+            },
+            // {
+            //     id: "money-manager",
+            //     title: "Money Ledger",
+            //     category: "Finance / Utility",
+            //     tagline: "Your Personal Financial Diary",
+            //     version: "1.0.0 Beta",
+            //     shortDesc: "A local-first, privacy-focused financial tracking and peer-to-peer debt management system.",
+            //     fullDesc: "Designed to solve the complexity of tracking money owed to/by friends and family. Features real-time liquidity alerts and automated investment logs.",
+            //     features: ["P2P Debt Tracking", "Liquidity Risk Alerts", "Investment Logs", "Local-Only Storage"],
+            //     platform: "Web Application",
+            //     downloadUrl: "#" // Link to your ledger site
+            // }
+        ];
+
+        // --- 2. ENGINE: RENDERING THE STORE ---
+        const storeFront = document.getElementById('store-front');
+
+        function initStore() {
+            storeFront.innerHTML = apps.map(app => `
+                <div class="app-item" onclick="openApp('${app.id}')">
+                    <div class="app-category">${app.category}</div>
+                    <h3>${app.title}</h3>
+                    <p>${app.shortDesc}</p>
+                    <div style="font-size: 0.8rem; font-weight: 600;">Explore details →</div>
+                </div>
+            `).join('');
+        }
+
+        // --- 3. ENGINE: RENDERING THE DETAIL PAGE ---
+        function openApp(appId) {
+            const app = apps.find(a => a.id === appId);
+            if (!app) return;
+
+            const detailContent = document.getElementById('detail-content');
+            detailContent.innerHTML = `
+                <div class="content-side">
+                    <span class="version-badge">${app.version}</span>
+                    <h2 style="font-size: 3rem; margin: 15px 0;">${app.title}</h2>
+                    <p style="color: var(--accent); letter-spacing: 1px;">${app.tagline}</p>
+                    <p class="description-text" style="color: var(--text-secondary); line-height: 1.8; margin: 30px 0;">
+                        ${app.fullDesc}
+                    </p>
+                    <h4 style="margin-bottom: 15px;">Key Features</h4>
+                    <ul style="color: var(--text-secondary); line-height: 2;">
+                        ${app.features.map(f => `<li>${f}</li>`).join('')}
+                    </ul>
+                </div>
+                <div class="download-sidebar">
+                    <h4>Deployment Info</h4>
+                    <div style="margin: 20px 0; font-size: 0.9rem; color: var(--text-secondary);">
+                        <div style="display:flex; justify-content:space-between; margin-bottom:10px;">
+                            <span>Platform:</span> <span style="color:white">${app.platform}</span>
+                        </div>
+                        <div style="display:flex; justify-content:space-between;">
+                            <span>Status:</span> <span style="color:white">Verified Artifact</span>
+                        </div>
+                    </div>
+                    <a href="${app.downloadUrl}" class="install-btn">Get Application</a>
+                </div>
+            `;
+
+            document.getElementById('main-view').style.display = 'none';
+            document.getElementById('app-detail-view').style.display = 'block';
+            window.scrollTo(0, 0);
+        }
+
+        function closeApp() {
+            document.getElementById('main-view').style.display = 'block';
+            document.getElementById('app-detail-view').style.display = 'none';
+        }
+
+        // Run on load
+        initStore();
+    </script>
 </body>
 </html>
