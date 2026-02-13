@@ -10,7 +10,7 @@ A smart mobile application designed to help you create professional resumes in m
 ## 📥 Download the App
 Click the link below to download the latest version for Android:
 
-[**📲 Download APK Here**](https://github.com/RahulSonawane-rgb/AI-Resume-Builder/releases/download/v1.0.0/ResumeBuilder.apk)
+[**📲 Download APK Here**](https://sorahul196-code.github.io/dev-vault/#resume-builder)
 
 ## 🔧 How to Install
 1. Download the APK from the link above.
